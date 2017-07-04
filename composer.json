@@ -1,0 +1,6 @@
+{
+    "require": {
+        "mikecao/flight": "^1.3", 
+        "php-curl-class/php-curl-class": "^7.3"
+    }
+}
