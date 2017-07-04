@@ -10,15 +10,15 @@ const JUST_IP_API = array(
   'api.ipify.org'
 ); 
 
-function getGeo($ip, $json = false, $en = false) {
+function getGeo($ip, $json = false, $en = true) {
   //$api_host = JUST_IP_API[time() % 3]; 
   //var_dump(Flight::request()->query); 
   $format = Flight::request()->query['format']; 
   $lang = Flight::request()->query['lang']; 
   if (0 == strcmp($format, 'json')) 
     $json = true; 
-  if (0 == strcmp($lang, 'en')) 
-    $en = true; 
+  if (0 == strcmp($lang, 'cn')) 
+    $en = false; 
   $request_url = ($en ? 'ipinfo.io/' : 'ip.cn/').$ip; 
   $curl = new Curl(); 
   $curl->setUserAgent('curl/*'); 
@@ -38,7 +38,7 @@ function getGeo($ip, $json = false, $en = false) {
       echo json_encode(array(
         "ip" => $ip, 
         "location" => $location
-      )); 
+      ), JSON_UNESCAPED_UNICODE); 
     } else {
       echo $location; 
     }
