@@ -46,12 +46,15 @@ function getGeo($ip, $json = false, $en = true) {
 }
 
 Flight::route('/', function() {
-  $ip = Flight::request()->proxy_ip; 
+  //$ip = Flight::request()->proxy_ip; 
+  $ip = Flight::request()->ip; 
   getGeo($ip); 
 }); 
 
 Flight::route('/@ip', function($ip) {
   getGeo($ip); 
+  //phpinfo(); 
+  //var_dump(Flight::request()); 
 }); 
 
 Flight::start(); 
